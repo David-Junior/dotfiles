@@ -56,6 +56,8 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("swayosd-server")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
   hl.exec_cmd("swaync")
+  hl.exec_cmd("wl-paste --type text --watch cliphist store")
+  hl.exec_cmd("wl-paste --type image --watch cliphist store")
   hl.exec_cmd("~/.config/waybar/launch.sh")
 end)
 
@@ -266,17 +268,39 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + M",
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
+hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = 1 }))
+hl.bind(mainMod .. " + SHIFT + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("gtk-launch zen.desktop"))
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("kitty -e yazi"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = 1 }))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + C",
+  hl.dsp.exec_cmd("cliphist list | fuzzel --dmenu --prompt 'Clipboard: ' | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+
+-- Vim-style focus movement.
+hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+
+-- Move tiled windows with the same Vim directions.
+hl.bind(mainMod .. " + ALT + H", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + ALT + J", hl.dsp.window.swap({ direction = "down" }))
+hl.bind(mainMod .. " + ALT + K", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + ALT + L", hl.dsp.window.swap({ direction = "right" }))
+
+hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
+hl.bind(mainMod .. " + CTRL + R", hl.dsp.exec_cmd("hyprctl reload"))
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("~/.config/waybar/launch.sh"))
+hl.bind(mainMod .. " + CTRL + B",
+  hl.dsp.exec_cmd("pgrep -x waybar >/dev/null && pkill -x waybar || ~/.config/waybar/launch.sh"))
 
 -- Capture a selected region directly to the clipboard.
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot -z -m region --clipboard-only"))
@@ -294,6 +318,11 @@ for i = 1, 10 do
   hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
   hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
+
+-- Cycle workspaces on the current monitor.
+hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "m-1" }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.focus({ workspace = "empty" }))
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
