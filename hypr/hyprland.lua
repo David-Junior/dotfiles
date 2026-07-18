@@ -270,9 +270,9 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.window.fullscreen({ mode = 1 }))
-hl.bind(mainMod .. " + SHIFT + M",
+hl.bind(mainMod .. " + SHIFT + CTRL + M",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + SHIFT + M", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("gtk-launch zen.desktop"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
@@ -321,8 +321,12 @@ end
 
 -- Cycle workspaces on the current monitor.
 hl.bind(mainMod .. " + Tab", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.focus({ workspace = "m+1" }))
 hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.focus({ workspace = "m-1" }))
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.focus({ workspace = "empty" }))
+hl.bind(mainMod .. " + SHIFT + H", hl.dsp.focus({ workspace = "m-1" }))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.focus({ workspace = "empty" }))
+hl.bind(mainMod .. " + SHIFT + K", hl.dsp.focus({ workspace = "1" }))
+
 
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
