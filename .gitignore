@@ -36,7 +36,9 @@
 *.tmp
 *~
 **/.git/
-**/.agents/
-**/.codex/
+**/.agents
+**/.agents/**
+**/.codex
+**/.codex/**
 **/.lazy/
 **/.mason/
