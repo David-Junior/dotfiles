@@ -1,0 +1,129 @@
+:root {
+  --solitude-bg: #101315;
+  --solitude-surface: #171b1e;
+  --solitude-hover: #23292d;
+  --solitude-border: #2f353b;
+  --solitude-muted: #798186;
+  --solitude-fg: #cacccc;
+  --solitude-focus: #a8adb0;
+  --solitude-critical: #de6145;
+  --cc-bg: rgba(16, 19, 21, 0.98);
+  --noti-border-color: var(--solitude-border);
+  --noti-bg: 16, 19, 21;
+  --noti-bg-alpha: 0.98;
+  --noti-bg-darker: var(--solitude-surface);
+  --noti-bg-hover: var(--solitude-hover);
+  --noti-bg-focus: var(--solitude-hover);
+  --noti-close-bg: var(--solitude-surface);
+  --noti-close-bg-hover: var(--solitude-border);
+  --text-color: var(--solitude-fg);
+  --text-color-disabled: var(--solitude-muted);
+  --bg-selected: var(--solitude-focus);
+  --notification-icon-size: 32px;
+  --notification-app-icon-size: 16px;
+  --notification-group-icon-size: 24px;
+  --border: 1px solid var(--solitude-border);
+  --border-radius: 0;
+  --notification-shadow: none;
+  --font-size-body: 11px;
+  --font-size-summary: 12px;
+}
+
+* {
+  font-family: "JetBrains Mono Nerd Font", monospace;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+notificationwindow, blankwindow, .blank-window, .floating-notifications {
+  background: transparent;
+}
+
+.notification-row { outline: none; }
+.notification-row .notification-background { padding: 4px 0 4px 8px; }
+
+.notification-row .notification-background .notification {
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+  border: var(--border);
+  border-radius: 0;
+  padding: 0;
+}
+
+.notification-row .notification-background .notification.critical {
+  border-color: var(--solitude-critical);
+}
+
+.notification-default-action, .notification-action, .notification-content,
+.close-button, .widget, .widget-title > button,
+.widget-dnd switch, .widget-dnd switch slider {
+  border-radius: 0;
+}
+
+.notification-default-action {
+  padding: 6px;
+  color: var(--solitude-fg);
+}
+
+.notification-default-action:hover, .notification-action:hover {
+  background: var(--solitude-hover);
+}
+
+.summary { color: var(--solitude-fg); font-weight: 600; }
+.body, .time { color: var(--solitude-muted); }
+.notification.critical .summary { color: var(--solitude-critical); }
+
+.close-button {
+  min-width: 20px;
+  min-height: 20px;
+  margin: 6px;
+  padding: 0;
+  color: var(--solitude-muted);
+  background: transparent;
+  border: 0;
+}
+
+.close-button:hover {
+  color: var(--solitude-fg);
+  background: var(--solitude-border);
+}
+
+.control-center {
+  color: var(--solitude-fg);
+  background: var(--cc-bg);
+  border: 1px solid var(--solitude-border);
+  border-radius: 0;
+}
+
+.control-center .notification-row .notification-background { padding: 4px 8px; }
+
+.widget {
+  margin: 6px 8px;
+  padding: 6px;
+  color: var(--solitude-fg);
+  background: transparent;
+}
+
+.widget-title > label { font-size: 14px; font-weight: 600; }
+
+.widget-title > button {
+  color: var(--solitude-muted);
+  background: var(--solitude-surface);
+  border: 1px solid var(--solitude-border);
+}
+
+.widget-title > button:hover {
+  color: var(--solitude-fg);
+  background: var(--solitude-hover);
+  border-color: var(--solitude-focus);
+}
+
+.widget-dnd label { color: var(--solitude-fg); font-size: 12px; }
+
+.widget-dnd switch {
+  background: var(--solitude-border);
+  border: 1px solid var(--solitude-border);
+}
+
+.widget-dnd switch:checked { background: var(--solitude-focus); }
+.widget-dnd switch slider { background: var(--solitude-bg); }
+.control-center-list-placeholder { color: var(--solitude-muted); }

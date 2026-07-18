@@ -1,0 +1,204 @@
+/* Continuous charcoal rail with one restrained e-reader orange accent. */
+@define-color background #101416;
+@define-color text #c8cbc7;
+@define-color muted #626664;
+@define-color accent #d0642a;
+@define-color critical #e07a3f;
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  padding: 0;
+  font-family: "JetBrains Mono Nerd Font", "Noto Sans", sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+window#waybar {
+  background: transparent;
+  color: @text;
+}
+
+window#waybar > box {
+  min-height: 25px;
+  background: rgba(16, 20, 22, 0.97);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  margin: 0;
+}
+
+.modules-left { margin-left: 3px; }
+.modules-right { margin-right: 5px; }
+
+button {
+  box-shadow: inset 0 -3px transparent;
+  border: 0;
+  border-radius: 0;
+  transition: color 150ms ease;
+}
+
+button:hover {
+  background: transparent;
+}
+
+#custom-workspace-one,
+#custom-workspace-two,
+#custom-workspace-three,
+#custom-workspace-four,
+#custom-workspace-five {
+  min-width: 14px;
+  margin: 0 9px;
+  padding: 0;
+  color: @muted;
+  background: transparent;
+  font-size: 14px;
+  opacity: 0.55;
+}
+
+#custom-workspace-one.active,
+#custom-workspace-two.active,
+#custom-workspace-three.active,
+#custom-workspace-four.active,
+#custom-workspace-five.active {
+  color: @accent;
+  background: transparent;
+  opacity: 1;
+}
+#custom-workspace-one:hover,
+#custom-workspace-two:hover,
+#custom-workspace-three:hover,
+#custom-workspace-four:hover,
+#custom-workspace-five:hover {
+  color: @accent;
+  background: transparent;
+  opacity: 1;
+  box-shadow: none;
+}
+
+#mpris,
+#power-profiles-daemon,
+#backlight,
+#pulseaudio,
+#bluetooth,
+#network,
+#battery,
+#tray,
+#custom-hardware,
+#disk,
+#custom-cpu,
+#memory,
+#custom-notification,
+#custom-exit,
+#clock {
+  margin: 0;
+  padding: 0 8px;
+  background: transparent;
+  opacity: 0.82;
+}
+
+#power-profiles-daemon,
+#backlight.icon,
+#pulseaudio.icon,
+#network.icon,
+#bluetooth,
+#custom-hardware,
+#custom-notification,
+#custom-exit {
+  font-family: "Material Symbols Sharp";
+  font-size: 15px;
+}
+
+#backlight.value,
+#pulseaudio.value,
+#network.value {
+  padding-left: 2px;
+  padding-right: 7px;
+  color: @accent;
+  font-family: "JetBrains Mono Nerd Font", sans-serif;
+  font-size: 11px;
+  opacity: 1;
+}
+
+#mpris {
+  margin-left: 9px;
+  margin-right: 5px;
+  color: @text;
+  opacity: 0.92;
+}
+
+#clock {
+  padding: 0 13px;
+  color: @text;
+  opacity: 1;
+}
+
+#network.icon {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bluetooth { padding-left: 5px; padding-right: 5px; }
+#tray { padding-top: 1px; opacity: 1; }
+#custom-exit { margin-left: 3px; margin-right: 3px; }
+
+#power-profiles-daemon.performance,
+#pulseaudio.muted,
+#battery.warning,
+#custom-notification.notification {
+  color: @accent;
+  opacity: 1;
+}
+
+#mpris:hover,
+#power-profiles-daemon:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#custom-hardware:hover,
+#disk:hover,
+#custom-cpu:hover,
+#memory:hover,
+#custom-notification:hover,
+#custom-exit:hover,
+#clock:hover {
+  color: @accent;
+  background: transparent;
+  opacity: 1;
+}
+
+#brightness:hover #backlight.icon,
+#volume:hover #pulseaudio.icon,
+#network:hover #network.icon {
+  color: @accent;
+  opacity: 1;
+}
+
+#battery.critical:not(.charging) {
+  color: @critical;
+  background: transparent;
+  opacity: 1;
+  animation: critical-pulse 600ms steps(8) infinite alternate;
+}
+
+@keyframes critical-pulse {
+  to { color: @muted; }
+}
+
+tooltip {
+  padding: 4px;
+  border: 1px solid rgba(200, 203, 199, 0.2);
+  border-radius: 0;
+  background: @background;
+}
+tooltip label {
+  color: rgba(200, 203, 199, 0.88);
+  font-size: 12px;
+}

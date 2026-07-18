@@ -1,0 +1,283 @@
+{
+  "layer": "top",
+  "exclusive": true,
+  "reload_style_on_change": true,
+  "position": "top",
+  "height": 26,
+  "fixed-center": true,
+  "spacing": 0,
+  "margin-top": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+
+  "modules-left": [
+    "custom/workspace-one",
+    "custom/workspace-two",
+    "custom/workspace-three",
+    "custom/workspace-four",
+    "custom/workspace-five",
+    "mpris"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "power-profiles-daemon",
+    "group/brightness",
+    "group/volume",
+    "group/network",
+    "bluetooth",
+    "group/hardware",
+    "battery",
+    "custom/notification",
+    "tray",
+    "custom/exit"
+  ],
+
+  "custom/workspace-one": {
+    "exec": "~/.config/waybar/scripts/workspace-status.sh 1 一",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+  },
+  "custom/workspace-two": {
+    "exec": "~/.config/waybar/scripts/workspace-status.sh 2 二",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+  },
+  "custom/workspace-three": {
+    "exec": "~/.config/waybar/scripts/workspace-status.sh 3 三",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+  },
+  "custom/workspace-four": {
+    "exec": "~/.config/waybar/scripts/workspace-status.sh 4 四",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+  },
+  "custom/workspace-five": {
+    "exec": "~/.config/waybar/scripts/workspace-status.sh 5 五",
+    "return-type": "json",
+    "signal": 8,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
+  },
+
+  "mpris": {
+    "format": "<span font_family='Material Symbols Sharp'>music_note</span> {dynamic}",
+    "format-paused": "<span font_family='Material Symbols Sharp'>pause</span> {dynamic}",
+    "dynamic-order": ["artist", "title", "position", "length"],
+    "dynamic-importance-order": ["position", "length", "artist", "title"],
+    "dynamic-len": 34,
+    "artist-len": 14,
+    "album-len": 0,
+    "title-len": 18,
+    "tooltip-format": "{player} ({status})\n{artist} — {title}",
+    "interval": 2
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "format-icons": {
+      "default": "balance",
+      "performance": "speed",
+      "balanced": "balance",
+      "power-saver": "energy_savings_leaf"
+    }
+  },
+
+  "backlight#icon": {
+    "device": "intel_backlight",
+    "format": "{icon}",
+    "tooltip": false,
+    "format-icons": ["brightness_low", "brightness_medium", "brightness_high"],
+    "scroll-step": 1,
+    "min-brightness": 5
+  },
+  "backlight#value": {
+    "device": "intel_backlight",
+    "format": "{percent}%",
+    "tooltip": false,
+    "scroll-step": 1,
+    "min-brightness": 5
+  },
+  "group/brightness": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 180,
+      "transition-left-to-right": false
+    },
+    "modules": ["backlight#icon", "backlight#value"]
+  },
+
+  "pulseaudio#icon": {
+    "format": "{icon}",
+    "format-muted": "volume_off",
+    "format-bluetooth": "{icon}",
+    "tooltip": false,
+    "format-icons": {
+      "headphone": "headphones",
+      "headset": "headset_mic",
+      "default": ["volume_mute", "volume_down", "volume_up"]
+    },
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+  },
+  "pulseaudio#value": {
+    "format": "{volume}%",
+    "format-muted": "mute {volume}%",
+    "format-bluetooth": "{volume}%",
+    "tooltip": false,
+    "scroll-step": 2,
+    "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+  },
+  "group/volume": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 180,
+      "transition-left-to-right": false
+    },
+    "modules": ["pulseaudio#icon", "pulseaudio#value"]
+  },
+
+  "bluetooth": {
+    "format": "bluetooth",
+    "format-connected": "bluetooth_connected",
+    "format-disabled": "bluetooth_disabled",
+    "format-off": "bluetooth_disabled",
+    "format-no-controller": "",
+    "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh bluetoothctl"
+  },
+
+  "network#icon": {
+    "format-icons": [
+      "signal_wifi_0_bar",
+      "network_wifi_1_bar",
+      "network_wifi_2_bar",
+      "network_wifi_3_bar",
+      "signal_wifi_4_bar"
+    ],
+    "format-wifi": "{icon}",
+    "format-ethernet": "lan",
+    "format-disconnected": "wifi_off",
+    "tooltip-format-wifi": "{essid}\nIP: {ipaddr}\nSignal: {signalStrength}%",
+    "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh nmtui",
+    "on-click-right": "nm-connection-editor"
+  },
+  "network#value": {
+    "format-wifi": "{essid}",
+    "format-ethernet": "{ifname}",
+    "format-disconnected": "off",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh nmtui",
+    "on-click-right": "nm-connection-editor"
+  },
+  "group/network": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 180,
+      "transition-left-to-right": false
+    },
+    "modules": ["network#icon", "network#value"]
+  },
+
+  "battery": {
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "<span font_family='Material Symbols Sharp'>battery_charging_full</span> {capacity}%",
+    "format-plugged": "<span font_family='Material Symbols Sharp'>power</span> {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "<span font_family='Material Symbols Sharp'>battery_0_bar</span>",
+      "<span font_family='Material Symbols Sharp'>battery_2_bar</span>",
+      "<span font_family='Material Symbols Sharp'>battery_4_bar</span>",
+      "<span font_family='Material Symbols Sharp'>battery_6_bar</span>",
+      "<span font_family='Material Symbols Sharp'>battery_full</span>"
+    ]
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 5
+  },
+
+  "custom/hardware": {
+    "format": "dashboard",
+    "tooltip-format": "Hardware usage\nClick any reading to open btop"
+  },
+  "custom/cpu": {
+    "exec": "~/.config/waybar/scripts/cpu-status.sh",
+    "return-type": "json",
+    "format": "<span font_family='Material Symbols Sharp'>memory</span> {}%",
+    "interval": 2,
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh btop"
+  },
+  "memory": {
+    "format": "<span font_family='Material Symbols Sharp'>developer_board</span> {percentage}%",
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh btop"
+  },
+  "disk": {
+    "interval": 30,
+    "path": "/",
+    "format": "<span font_family='Material Symbols Sharp'>hard_drive</span> {percentage_used}%",
+    "on-click": "~/.config/waybar/scripts/terminal-run.sh btop"
+  },
+  "group/hardware": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/hardware", "disk", "custom/cpu", "memory"]
+  },
+
+  "custom/notification": {
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "notifications_active",
+      "none": "notifications_none",
+      "dnd-notification": "notifications_off",
+      "dnd-none": "notifications_off",
+      "inhibited-notification": "notifications_off",
+      "inhibited-none": "notifications_off"
+    },
+    "return-type": "json",
+    "exec-if": "command -v swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "tooltip-format": "Left: notifications\nRight: do not disturb",
+    "escape": true
+  },
+
+  "custom/exit": {
+    "format": "power_settings_new",
+    "on-click": "wlogout",
+    "on-click-right": "hyprlock",
+    "tooltip-format": "Left: power menu\nRight: lock"
+  },
+
+  "clock": {
+    "format": "{0:%H:%M} <span foreground='#626664'>| <i>{0:%d %a}</i></span>",
+    "format-alt": "{:%A, %d %B %Y — %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>"
+  }
+}

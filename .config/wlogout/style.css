@@ -1,0 +1,66 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 12px;
+}
+
+window {
+    background-color: rgba(16, 19, 21, 0.94);
+}
+
+button {
+    color: #798186;
+    background-color: rgba(16, 19, 21, 0.96);
+    border: 1px solid #343d41;
+    border-radius: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    transition: 120ms ease;
+}
+
+button:hover,
+button:focus {
+    color: #cacccc;
+    background-color: #171b1e;
+    border-color: #a8adb0;
+    outline: none;
+}
+
+button:active {
+    color: #101315;
+    background-color: #a8adb0;
+    border-color: #a8adb0;
+}
+
+#shutdown:hover,
+#shutdown:focus {
+    color: #de6145;
+    border-color: #de6145;
+}
+
+#lock {
+    background-image: url("/home/david/.config/wlogout/icons/lock.svg");
+}
+
+#suspend {
+    background-image: url("/home/david/.config/wlogout/icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("/home/david/.config/wlogout/icons/hibernate.svg");
+}
+
+#logout {
+    background-image: url("/home/david/.config/wlogout/icons/logout.svg");
+}
+
+#reboot {
+    background-image: url("/home/david/.config/wlogout/icons/reboot.svg");
+}
+
+#shutdown {
+    background-image: url("/home/david/.config/wlogout/icons/shutdown.svg");
+}

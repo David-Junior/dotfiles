@@ -1,0 +1,16 @@
+.DS_Store
+*.log
+*.swp
+*.tmp
+*~
+
+# Never commit runtime state, credentials, or browser profiles.
+.config/dconf/
+.config/obsidian/
+.config/pulse/
+.config/session/
+.config/zen/
+
+# Plugin and editor runtime data belongs outside the configuration snapshot.
+.config/nvim/.lazy/
+.config/nvim/.mason/

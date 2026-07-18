@@ -1,0 +1,4 @@
+adw-gtk-theme-git
+ttf-material-symbols-variable-git
+wlogout
+yaru-icon-theme
