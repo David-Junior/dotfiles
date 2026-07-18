@@ -1,16 +1,44 @@
-.DS_Store
+# Ignore every ~/.config entry unless it is explicitly allowlisted below.
+/*
+
+!/.gitignore
+!/README.md
+
+!/packages/
+!/packages/**
+
+!/btop/
+!/btop/**
+!/fuzzel/
+!/fuzzel/**
+!/gtk-3.0/
+!/gtk-3.0/**
+!/gtk-4.0/
+!/gtk-4.0/**
+!/hypr/
+!/hypr/**
+!/kitty/
+!/kitty/**
+!/nvim/
+!/nvim/**
+!/swaync/
+!/swaync/**
+!/swayosd/
+!/swayosd/**
+!/waybar/
+!/waybar/**
+!/wlogout/
+!/wlogout/**
+
+# Runtime and temporary files inside tracked directories.
 *.log
 *.swp
 *.tmp
 *~
-
-# Never commit runtime state, credentials, or browser profiles.
-.config/dconf/
-.config/obsidian/
-.config/pulse/
-.config/session/
-.config/zen/
-
-# Plugin and editor runtime data belongs outside the configuration snapshot.
-.config/nvim/.lazy/
-.config/nvim/.mason/
+**/.git/
+**/.agents
+**/.agents/**
+**/.codex
+**/.codex/**
+**/.lazy/
+**/.mason/
