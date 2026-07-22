@@ -9,6 +9,8 @@
 
 !/btop/
 !/btop/**
+!/cava/
+!/cava/**
 !/fuzzel/
 !/fuzzel/**
 !/gtk-3.0/

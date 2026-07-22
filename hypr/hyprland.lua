@@ -53,7 +53,7 @@ hl.on("hyprland.start", function()
   --   hl.exec_cmd(terminal)
   --   hl.exec_cmd("nm-applet")
   hl.exec_cmd("waybar & hyprpaper")
-  hl.exec_cmd("swayosd-server")
+  hl.exec_cmd("pgrep -x swayosd-server >/dev/null || swayosd-server")
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
   hl.exec_cmd("swaync")
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
@@ -352,6 +352,18 @@ hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("swayosd-client --input-volume mute-
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness +5 --min-brightness 2"),
   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness -5 --min-brightness 2"),
+  { locked = true, repeating = true })
+
+-- Plain function-key aliases for keyboards operating in F-key mode.
+hl.bind("F1", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"),
+  { locked = true })
+hl.bind("F2", hl.dsp.exec_cmd("swayosd-client --output-volume -5 --max-volume 100"),
+  { locked = true, repeating = true })
+hl.bind("F3", hl.dsp.exec_cmd("swayosd-client --output-volume +5 --max-volume 100"),
+  { locked = true, repeating = true })
+hl.bind("F11", hl.dsp.exec_cmd("swayosd-client --brightness -5 --min-brightness 2"),
+  { locked = true, repeating = true })
+hl.bind("F12", hl.dsp.exec_cmd("swayosd-client --brightness +5 --min-brightness 2"),
   { locked = true, repeating = true })
 
 -- Requires playerctl

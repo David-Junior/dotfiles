@@ -67,8 +67,8 @@
   },
 
   "mpris": {
-    "format": "<span font_family='Material Symbols Sharp'>music_note</span> {dynamic}",
-    "format-paused": "<span font_family='Material Symbols Sharp'>pause</span> {dynamic}",
+    "format": "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>music_note</span> {dynamic}",
+    "format-paused": "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>pause</span> {dynamic}",
     "dynamic-order": ["artist", "title", "position", "length"],
     "dynamic-importance-order": ["position", "length", "artist", "title"],
     "dynamic-len": 34,
@@ -202,15 +202,15 @@
       "critical": 10
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "<span font_family='Material Symbols Sharp'>battery_charging_full</span> {capacity}%",
-    "format-plugged": "<span font_family='Material Symbols Sharp'>power</span> {capacity}%",
+    "format-charging": "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_charging_full</span> {capacity}%",
+    "format-plugged": "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>power</span> {capacity}%",
     "format-alt": "{icon} {time}",
     "format-icons": [
-      "<span font_family='Material Symbols Sharp'>battery_0_bar</span>",
-      "<span font_family='Material Symbols Sharp'>battery_2_bar</span>",
-      "<span font_family='Material Symbols Sharp'>battery_4_bar</span>",
-      "<span font_family='Material Symbols Sharp'>battery_6_bar</span>",
-      "<span font_family='Material Symbols Sharp'>battery_full</span>"
+      "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_0_bar</span>",
+      "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_2_bar</span>",
+      "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_4_bar</span>",
+      "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_6_bar</span>",
+      "<span font_family='Material Symbols Sharp' size='11520' weight='500' rise='-1024'>battery_full</span>"
     ]
   },
 
