@@ -89,6 +89,7 @@ button:hover {
 #network,
 #battery,
 #tray,
+#custom-tray-drawer,
 #custom-hardware,
 #disk,
 #custom-cpu,
@@ -107,6 +108,7 @@ button:hover {
 #pulseaudio.icon,
 #network.icon,
 #bluetooth,
+#custom-tray-drawer,
 #custom-hardware,
 #custom-notification,
 #custom-exit {
@@ -167,6 +169,7 @@ button:hover {
 #custom-cpu:hover,
 #memory:hover,
 #custom-notification:hover,
+#custom-tray-drawer:hover,
 #custom-exit:hover,
 #clock:hover {
   color: @accent;

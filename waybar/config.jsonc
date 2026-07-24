@@ -31,7 +31,7 @@
     "group/hardware",
     "battery",
     "custom/notification",
-    "tray",
+    "group/tray-drawer",
     "custom/exit"
   ],
 
@@ -108,7 +108,7 @@
   "group/brightness": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 180,
+      "transition-duration": 500,
       "transition-left-to-right": false
     },
     "modules": ["backlight#icon", "backlight#value"]
@@ -144,7 +144,7 @@
   "group/volume": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 180,
+      "transition-duration": 500,
       "transition-left-to-right": false
     },
     "modules": ["pulseaudio#icon", "pulseaudio#value"]
@@ -189,7 +189,7 @@
   "group/network": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 180,
+      "transition-duration": 500,
       "transition-left-to-right": false
     },
     "modules": ["network#icon", "network#value"]
@@ -219,6 +219,19 @@
     "spacing": 5
   },
 
+  "custom/tray-drawer": {
+    "format": "apps",
+    "tooltip-format": "System tray"
+  },
+  "group/tray-drawer": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": ["custom/tray-drawer", "tray"]
+  },
+
   "custom/hardware": {
     "format": "dashboard",
     "tooltip-format": "Hardware usage\nClick any reading to open btop"
@@ -243,7 +256,7 @@
   "group/hardware": {
     "orientation": "inherit",
     "drawer": {
-      "transition-duration": 300,
+      "transition-duration": 1000,
       "transition-left-to-right": false
     },
     "modules": ["custom/hardware", "disk", "custom/cpu", "memory"]
